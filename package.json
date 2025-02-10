@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && git add dist && git commit -m 'Deploy to GitHub Pages' && git push origin main"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
