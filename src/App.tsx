@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './App.css';  // Assuming this is in the same folder as your component
 
 export default function InitiativeTracker() {
   interface Character {
@@ -6,15 +7,19 @@ export default function InitiativeTracker() {
     initiative: number;
     hp: number;
   }
-  
-  const [characters, setCharacters] = useState<Character[]>([]);
 
-  
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [name, setName] = useState("");
   const [initiative, setInitiative] = useState("");
   const [hp, setHp] = useState("");
 
-  
+  // Pre-made characters to generate
+  const premadeCharacters = [
+    { name: "Tara", initiative: 0, hp: 0 },
+    { name: "Nimrodel", initiative: 0, hp: 0 },
+    { name: "Frank", initiative: 0, hp: 0 },
+    { name: "Shieldbiter", initiative: 0, hp: 0 },
+  ];
 
   const addCharacter = () => {
     if (name.trim() === "" || initiative.trim() === "" || hp.trim() === "") return;
@@ -26,6 +31,13 @@ export default function InitiativeTracker() {
     setName("");
     setInitiative("");
     setHp("");
+  };
+
+  const generatePremadeCharacters = () => {
+    setCharacters((prev) => [
+      ...prev,
+      ...premadeCharacters,
+    ].sort((a, b) => b.initiative - a.initiative)); // Sort by initiative
   };
 
   const updateCharacter = (index: number, field: string, value: string) => {
@@ -50,76 +62,85 @@ export default function InitiativeTracker() {
     setCharacters([]);
   };
 
+  const refreshOrder = () => {
+    setCharacters((prev) =>
+      [...prev].sort((a, b) => b.initiative - a.initiative) // Sort in descending order by initiative
+    );
+  };
+
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">DnD Initiative Tracker</h1>
-      <div className="flex gap-2 mb-4">
+    <div className="container">
+      <h1>Friendly reminder: don't kill them</h1>
+      <div className="form-container">
         <input
-          className="border p-2 rounded w-1/3"
+          className="input"
           placeholder="Character Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          className="border p-2 rounded w-1/4"
+          className="input"
           type="number"
           placeholder="Initiative"
           value={initiative}
           onChange={(e) => setInitiative(e.target.value)}
         />
         <input
-          className="border p-2 rounded w-1/4"
+          className="input"
           type="number"
           placeholder="HP"
           value={hp}
           onChange={(e) => setHp(e.target.value)}
         />
-        <button className="bg-blue-500 text-white p-2 rounded" onClick={addCharacter}>
-          Add
+        <button className="add-btn" onClick={addCharacter}>
+          Add Character
         </button>
       </div>
-      <div className="space-y-2">
+      
+      <button className="generate-btn" onClick={generatePremadeCharacters}>
+        Generate Pre-made Characters
+      </button>
+
+      <div>
         {characters.map((char, index) => (
-          <div key={index} className="border p-2 rounded shadow flex justify-between items-center">
+          <div key={index} className="character">
             <input
-              className="w-1/3 border p-2 rounded"
+              className="input"
               value={char.name}
               onChange={(e) => updateCharacter(index, "name", e.target.value)}
             />
             <input
-              className="w-1/4 border p-2 rounded"
+              className="input"
               type="number"
               value={char.initiative}
               onChange={(e) => updateCharacter(index, "initiative", e.target.value)}
             />
             <input
-              className="w-1/4 border p-2 rounded"
+              className="input"
               type="number"
               value={char.hp}
               onChange={(e) => updateCharacter(index, "hp", e.target.value)}
             />
-            <div className="flex gap-2">
-              <button
-                className="bg-gray-300 px-2 py-1 rounded"
-                onClick={() => duplicateCharacter(index)}
-              >
+            <div className="button-container">
+              <button className="duplicate-btn" onClick={() => duplicateCharacter(index)}>
                 Duplicate
               </button>
-              <button
-                className="bg-red-500 text-white px-2 py-1 rounded"
-                onClick={() => removeCharacter(index)}
-              >
+              <button className="remove-btn" onClick={() => removeCharacter(index)}>
                 Remove
               </button>
             </div>
           </div>
         ))}
       </div>
+
       {characters.length > 0 && (
-        <button className="bg-red-600 text-white p-2 rounded mt-4" onClick={resetList}>
+        <button className="reset-btn" onClick={resetList}>
           Reset Initiative List
         </button>
       )}
+      <button className="refresh-btn" onClick={refreshOrder}>
+  Refresh Order
+</button>
     </div>
   );
 }

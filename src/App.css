@@ -1,42 +1,153 @@
-#root {
-  max-width: 1280px;
+/* Global Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Tavern_Scene-1658-David_Teniers_II.jpg'); /* Replace with your wood texture image URL */
+  background-color: #3e3e3e; /* Dark gray fallback */
+  background-size: cover;
+  background-position: center;
+  color: #f4f4f4; /* Light gray text for contrast */
+  margin: 0;
+  padding: 0;
+}
+
+/* Container Styling */
+.container {
+  padding: 15px;
+  max-width: 900px; /* Reduced max-width */
   margin: 0 auto;
-  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent dark background for readability */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling */
+h1 {
+  text-align: center;
+  font-size: 1.8rem; /* Slightly smaller font size */
+  font-weight: bold;
+  margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Form Container to align inputs and button horizontally */
+.form-container {
+  display: flex;
+  align-items: center; /* Vertically align the items in the center */
+  gap: 10px; /* Space between input fields and button */
+  margin-bottom: 15px; /* Space below the form container */
+}
+
+/* Input Fields */
+.input {
+  background-color: rgba(255, 255, 255, 0.2); /* Light semi-transparent background */
+  color: #f4f4f4; /* Light text */
+  border: 1px solid #8b5e3c; /* Muted brown border */
+  padding: 6px 8px; /* Reduced padding */
+  border-radius: 5px;
+  width: 25%; /* Reduced width */
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Add Character Button */
+.add-btn {
+  background-color: #6e4b3a; /* Soft brown */
+  color: #f4f4f4; /* Light text */
+  font-weight: bold;
+  padding: 10px 15px; /* Slightly more padding to match the size */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-btn:hover {
+  background-color: #8b5e3c; /* Lighter brown on hover */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Character Box Styling */
+.character {
+  background-color: #4b3a2f; /* Darker brown for character boxes */
+  border: 1px solid #8b5e3c; /* Matching muted brown border */
+  padding: 6px; /* Reduced padding */
+  border-radius: 8px;
+  margin-bottom: 8px; /* Reduced margin between character boxes */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px; /* Reduced gap between inputs */
 }
 
-.card {
-  padding: 2em;
+/* Character Input Fields (Initiative and HP) */
+.character-input {
+  background-color: rgba(255, 255, 255, 0.2); /* Light semi-transparent background */
+  color: #f4f4f4; /* Light text */
+  border: none;
+  width: 20%; /* Reduced width */
+  text-align: center;
+  padding: 6px; /* Reduced padding */
 }
 
-.read-the-docs {
-  color: #888;
+/* Character Button Container */
+.character .button-container {
+  display: flex;
+  gap: 5px; /* Smaller gap between buttons */
+}
+
+/* Character Buttons */
+.character button {
+  background-color: #6e4b3a; /* Soft brown */
+  font-size: 0.8rem; /* Smaller font size */
+  margin-left: 5px;
+  padding: 8px 12px; /* Reduced padding */
+  border-radius: 5px;
+  color: white;
+}
+
+.character button:hover {
+  background-color: #8b5e3c; /* Lighter brown on hover */
+}
+
+/* Pre-made Character Button */
+.generate-btn {
+  background-color: #6e4b3a; /* Soft brown for generate button */
+  color: #f4f4f4; /* Light text */
+  font-weight: bold;
+  margin-top: 15px; /* Reduced margin */
+  width: 100%;
+  padding: 10px 0; /* Reduced padding */
+  border-radius: 5px;
+}
+
+.generate-btn:hover {
+  background-color: #8b5e3c; /* Lighter brown on hover */
+}
+
+/* Reset Button */
+.reset-btn {
+  background-color: #5c4033; /* Dark brown for reset button */
+  color: #f4f4f4; /* Light text */
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 0; /* Reduced padding */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: #7b5538; /* Slightly lighter brown on hover */
+}
+
+/* Refresh Button */
+.refresh-btn {
+  background-color: #6e4b3a; /* Soft brown */
+  color: #f4f4f4; /* Light text */
+  font-weight: bold;
+  padding: 10px 15px; /* Same as other buttons */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.refresh-btn:hover {
+  background-color: #8b5e3c; /* Lighter brown on hover */
 }

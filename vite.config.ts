@@ -1,5 +1,11 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/dm-screen3/', // Replace <repository-name> with the actual name of your GitHub repository
+  // Set the base path to match your GitHub repository name
+  base: '/dm-screen3/', // Replace with your repository name
+
+  // Optional: Additional configurations can go here
+  build: {
+    outDir: 'dist', // Directory where the built files will go
+  },
 });
