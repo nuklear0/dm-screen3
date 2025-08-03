@@ -6,25 +6,27 @@ export default function InitiativeTracker() {
     name: string;
     initiative: number;
     hp: number;
+    ac: number;
   }
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [name, setName] = useState("");
   const [initiative, setInitiative] = useState("");
   const [hp, setHp] = useState("");
+  const [ac, setAc] = useState("");
 
   // Pre-made characters to generate
   const premadeCharacters = [
-    { name: "Tara", initiative: 0, hp: 0 },
-    { name: "Nimrodel", initiative: 0, hp: 0 },
-    { name: "Frank", initiative: 0, hp: 0 },
-    { name: "Shieldbiter", initiative: 0, hp: 0 },
+    { name: "Tara", initiative: 0, hp: 0, ac: 0},
+    { name: "Nimrodel", initiative: 0, hp: 0, ac: 0 },
+    { name: "Frank", initiative: 0, hp: 0, ac: 0 },
+    { name: "Shieldbiter", initiative: 0, hp: 0, ac: 0 },
   ];
 
   const addCharacter = () => {
     if (name.trim() === "" || initiative.trim() === "" || hp.trim() === "") return;
     setCharacters((prev) =>
-      [...prev, { name, initiative: parseInt(initiative, 10), hp: parseInt(hp, 10) }].sort(
+      [...prev, { name, initiative: parseInt(initiative, 10), hp: parseInt(hp, 10), ac: parseInt(ac, 10) }].sort(
         (a, b) => b.initiative - a.initiative
       )
     );
@@ -120,6 +122,13 @@ export default function InitiativeTracker() {
               type="number"
               value={char.hp}
               onChange={(e) => updateCharacter(index, "hp", e.target.value)}
+            />
+
+            <input
+              className="input"
+              type="number"
+              value={char.ac}
+              onChange={(e) => updateCharacter(index, "ac", e.target.value)}
             />
             <div className="button-container">
               <button className="duplicate-btn" onClick={() => duplicateCharacter(index)}>
