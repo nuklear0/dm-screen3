@@ -94,6 +94,13 @@ export default function InitiativeTracker() {
           value={hp}
           onChange={(e) => setHp(e.target.value)}
         />
+        <input
+          className="input"
+          type="number"
+          placeholder="AC"
+          value={ac}
+          onChange={(e) => setHp(e.target.value)}
+        />
         <button className="add-btn" onClick={addCharacter}>
           Add Character
         </button>
